@@ -26,10 +26,10 @@ def get_filters():
     while city_name.lower() not in CITY_DATA:
         city_name = input("\nPlease Enter a City Name: \n")
         if city_name.lower() in CITY_DATA:
-           
+
             city = CITY_DATA[city_name.lower()]
         else:
-         
+
             print("Invalid input!!!, Please enter a valid city name.\n")
 
     # TO DO: get user input for month (all, january, february, ... , june)
@@ -37,10 +37,10 @@ def get_filters():
     while month_name.lower() not in MONTH_DATA:
         month_name = input("\nPlease choose which Month would you like to explore?\n")
         if month_name.lower() in MONTH_DATA:
-            
+
             month = month_name.lower()
         else:
-            
+
             print("Invalid input!!!, Please input either 'all' or from january to june.\n")
 
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
@@ -48,10 +48,10 @@ def get_filters():
     while day_name.lower() not in DAY_DATA:
         day_name = input("\nPlease choose which Day would you like to explore?)\n")
         if day_name.lower() in DAY_DATA:
-            
+
             day = day_name.lower()
         else:
-            
+
             print("Invalid input!!!, Please input either 'all' for all days filter or from monday to sunday.\n")
 
     print('-'*40)
@@ -68,26 +68,26 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-   
+
     df = pd.read_csv(city)
 
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
-    
+
     df['month'] = df['Start Time'].dt.month
     df['day_of_week'] = df['Start Time'].dt.weekday_name
     df['hour'] = df['Start Time'].dt.hour
 
 
-    
+
     if month != 'all':
-        
+
         month = MONTH_DATA.index(month)
 
-       
+
         df = df.loc[df['month'] == month]
 
-  
+
     if day != 'all':
         # filter by day of week to create the new dataframe
         df = df.loc[df['day_of_week'] == day.title()]
@@ -215,7 +215,9 @@ def main():
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
-
+# this is the first change
 
 if __name__ == "__main__":
     main()
+
+# this is my seconed comment
